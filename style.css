@@ -1,0 +1,226 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white ;
+    cursor: none;
+}
+
+.cursor {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #00fff7;
+    border-radius: 40%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+
+.cursor-follower {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #00fff7;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+}
+button:hover ~ .cursor,
+button:hover ~ .cursor-follower {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+.hero {
+    width:100%;
+    height:100vh;
+    display: flex;
+    /* later use bg gradient */
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    text-align: center;
+}
+/* glowinf effect */
+@keyframes glow {
+    1% {
+        text-shadow: 0 0 5px #00fff7 , 0 0 7px #00fff7;
+    }
+    50% {
+        text-shadow: 0 0 5px #00ff3c, 0 0 7px #00ff3c;
+    }
+}
+
+.hero h1{
+    font-size: 80px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #00ff3c , #00fff7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;  
+    animation: glow 5s infinite ;
+}   
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #aaa;
+}
+
+.cta-button {
+    padding: 15px 40px;
+    background: transparent;
+    border: 2px solid #00fff7;
+    color: #00f5ff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 8px;
+}
+.cta-button:hover {
+    background: #00fff7;
+    color: #000;
+    border-radius: 20px;
+}
+
+/* particles canvas  */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.about {
+
+    min-height: 100vh;
+    padding: 100px 50px;
+    /* background: #0f0f0f;  */
+    /* later use bg = black */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.glass-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.5s;
+}
+
+.glass-card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 20px 40px rgba(0,255,255,0.5);
+    border-color: rgba(0,255,255,0.5);
+
+}
+
+.glass-card h2 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: #00fff7;
+}
+
+.glass-card p {
+    line-height: 1.8;
+    color : #ccc;
+    font-size: 18px ;
+}
+
+.skills {
+    min-height: 100vh;
+    padding: 100px 50px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skills-container {
+    max-width: 1000px;
+    width:100%;
+
+}
+
+.skills-container h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 50px;
+    background: linear-gradient(45deg, #00f5ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skill-item {
+    margin-bottom: 40px;
+}
+
+.skill-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #fff;
+
+}
+
+.skill-bar {
+    height: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #00f5ff, #ff00ff);
+    width: 0%;
+    border-radius: 5px;
+    transition: width 2s ease;
+    box-shadow: 0 0 20px #00f5ff;
+}
+
+/* Shimmer effect on skill bars */
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
