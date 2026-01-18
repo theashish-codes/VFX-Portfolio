@@ -2,6 +2,7 @@
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
 
+
 document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
@@ -27,6 +28,27 @@ buttons.addEventListener('mouseleave', () => {
     cursor.style.height = '10px';
     cursorFollower.style.width = '30px';
     cursorFollower.style.height = '30px';   
+});
+
+// Make cursor interactive with all clickable elements
+const clickables = document.querySelectorAll('button, .glass-card');
+
+clickables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        cursor.style.backgroundColor = 'rgba(0, 245, 255, 0.2)';
+        cursorFollower.style.width = '50px';
+        cursorFollower.style.height = '50px';
+    });
+    
+    el.addEventListener('mouseleave', () => {
+        cursor.style.width = '10px';
+        cursor.style.height = '10px';
+        cursor.style.backgroundColor = 'transparent';
+        cursorFollower.style.width = '30px';
+        cursorFollower.style.height = '30px';
+    });
 });
 //particles effect 
 
@@ -141,3 +163,40 @@ window.addEventListener('scroll', () => {
         skillsAnimated = true;
     }
 });
+
+// Typing Effecttt
+
+const typingText = document.getElementById('typing-text');
+const texts = ['Full Stack Developer', 'Java Developer', 'Product Engineer', 'Tech Enthusiast'];
+let textIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 100;
+
+function type() {
+    const currentText = texts[textIndex];
+    if (isDeleting) {
+        typingText.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50;
+    } else {
+        typingText.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 100;
+    }
+
+    if (!isDeleting && charIndex === currentText.length) {
+        isDeleting = true;
+        typingSpeed = 2000; // Pause before deleting
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+        typingSpeed = 500; // Pause before typing next text
+    }
+    setTimeout(type, typingSpeed);
+}
+type();
+// End of typing effect
+
+
+
