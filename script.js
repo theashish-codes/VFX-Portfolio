@@ -62,7 +62,7 @@ canvas.height = window.innerHeight;
 
 //array to holdd particle
 const particles =[];
-const particleCount = 100;
+const particleCount = 150;
 
 //particle class
 class Particle {
@@ -198,5 +198,82 @@ function type() {
 type();
 // End of typing effect
 
+//tillt effcts for prjcts cards 
+const projectCards = document.querySelectorAll('.project-card');
+
+projectCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; //x position within the element.
+        const y = e.clientY - rect.top;  //y position within the element.
+
+        const centerX = rect.width / 1.1;
+        const centerY = rect.height / 1.1;
+
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+
+        card.style.transform = ` translateY(-2px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+    });
+}); 
+
+// Contact Form Handler
+const contactForm = document.getElementById('contact-form');
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // Simple validation
+    if (name && email && subject && message) {
+        // Success animation
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        submitBtn.innerHTML = '<span>✓ Message Sent!</span>';
+        submitBtn.style.background = 'linear-gradient(45deg, #0cff00, #00ff88)';
+        
+        // Reset form after 2 seconds
+        setTimeout(() => {
+            contactForm.reset();
+            submitBtn.innerHTML = '<span>Send Message</span>';
+            submitBtn.style.background = 'linear-gradient(45deg, var(--primary), var(--secondary))';
+        }, 2000);
+    }
+});
+
+// Add ripple effect to submit button
+const submitBtn = document.querySelector('.submit-btn');
+
+submitBtn.addEventListener('click', function(e) {
+    const rect = this.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const ripple = document.createElement('span');
+    ripple.style.cssText = `
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        left: ${x}px;
+        top: ${y}px;
+        transform: translate(-50%, -50%) scale(0);
+        animation: ripple-effect 0.6s ease-out;
+        pointer-events: none;
+    `;
+    
+    this.appendChild(ripple);
+    
+    setTimeout(() => ripple.remove(), 600);
+});
 
 

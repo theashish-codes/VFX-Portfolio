@@ -1,3 +1,12 @@
+:root {
+    --primary-color: #00f5ff;
+    --secondary-color: #ff00ff;
+    /* --accent-color: #ff00ff; */
+    /* --background-color: #0a0a0a; */
+    /* --text-color: #ffffff; */
+}
+
+
 *{
     margin:0;
     padding:0;
@@ -61,7 +70,7 @@ button:hover ~ .cursor-follower {
         text-shadow: 0 0 5px #00fff7 , 0 0 7px #00fff7;
     }
     50% {
-        text-shadow: 0 0 5px #00ff3c, 0 0 7px #00ff3c;
+        text-shadow: 0 0 5px var(--secondary-color), 0 0 7px var(--secondary-color);
     }
 }
 
@@ -69,7 +78,7 @@ button:hover ~ .cursor-follower {
     font-size: 80px;
     font-weight: 900;
     margin-bottom: 20px;
-    background: linear-gradient(45deg, #00ff3c , #00f5ff);
+    background: linear-gradient(45deg, var(--secondary-color), #00f5ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;  
     animation: glow 5s infinite ;
@@ -194,7 +203,7 @@ button:hover ~ .cursor-follower {
 .skills {
     min-height: 100vh;
     padding: 100px 50px;
-    background: linear-gradient(45deg, #00ff3c , #00f5ff);
+    background: linear-gradient(45deg, var(--secondary-color), #00f5ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: flex;
@@ -274,3 +283,339 @@ button:hover ~ .cursor-follower {
     }
 }
 
+.projects{
+    min-height: 100vh;
+    padding: 100px 50px;
+    /* background: #0f0f0f; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.projects-container {
+    max-width: 1400px;
+    width: 100%;
+
+}
+.projects-container h2 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 60px;
+    background: linear-gradient(45deg, #00f5ff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.5s cubic-bezier(0.23,1,0.32,1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    border-radius: 20px;
+    transition: opacity 0.5s;
+    z-index: -1;
+}
+.project-card:hover::before {
+    opacity: 0.1;
+}
+
+.project-card:hover {
+    transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 40px var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.project-number {
+    position: absolute;
+    top:20px;
+    right:20px;
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    z-index: 0;
+}
+
+.project-card h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    color: var(--primary-color);
+}
+
+.project-card p {
+    color: #aaa;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+}
+.project-tags{
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.tag{
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--primary-color);
+    transition: all 0.3s;
+
+}
+
+.tag:hover {
+    background-color: var(--primary-color);
+    color: #000;
+    /* transform: translateY(-2px); */
+}
+.project-btn{
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.project-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-color);
+    /* border-radius: 50%; */
+    /* transform: translate(-50%, -50%); */
+    transition: left 0.6s;
+    z-index: -1;
+}
+.project-btn:hover::before {
+    left: 0;
+}
+
+.project-btn:hover {
+    color: #000;
+    box-shadow: 0 0 20px var(--primary-color);
+
+}
+
+/* Contact Section */
+.contact {
+    min-height: 100vh;
+    padding: 100px 50px;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.contact-container {
+    max-width: 700px;
+    width: 100%;
+}
+
+.contact-container h2 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.contact-subtitle {
+    text-align: center;
+    font-size: 18px;
+    color: #aaa;
+    margin-bottom: 50px;
+}
+
+/* Form Styling */
+.contact-form {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.form-group label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    color: #aaa;
+    font-size: 16px;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.form-group input:focus ~ label,
+.form-group input:valid ~ label,
+.form-group textarea:focus ~ label,
+.form-group textarea:valid ~ label {
+    top: -10px;
+    font-size: 12px;
+    color: var(--primary-color);
+}
+
+.form-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transition: width 0.5s;
+}
+
+.form-group input:focus ~ .form-line,
+.form-group textarea:focus ~ .form-line {
+    width: 100%;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.submit-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px var(--primary-color);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Social Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    background: var(--primary-color);
+    color: #000;
+    transform: translateY(-5px) rotate(360deg);
+    box-shadow: 0 10px 20px var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .contact {
+        padding: 50px 20px;
+    }
+    
+    .contact-container h2 {
+        font-size: 35px;
+    }
+    
+    .contact-form {
+        padding: 30px 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
